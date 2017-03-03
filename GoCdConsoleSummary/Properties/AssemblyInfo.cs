@@ -5,7 +5,7 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GoCdConsoleSummary")]
-[assembly: AssemblyCopyright("Copyright © Mat Roberts and James Sinclair 2017")]
+[assembly: AssemblyCopyright("MIT Licence https://opensource.org/licenses/MIT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("1.0.*")]

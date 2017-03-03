@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoCdConsoleSummary
 {
@@ -27,6 +24,29 @@ Usage:
 Examples:
     {info.InternalName} Console-Summary.html");
                 Environment.Exit(1);
+            }
+
+            var template = GetConsoleSummaryTemplate("GoCdConsoleSummary.Template.html");
+            var url = GetUrl();
+            File.WriteAllText(args[0], template.Replace("##URL##", url));
+        }
+
+        public static string GetUrl()
+        {
+            string url = Environment.GetEnvironmentVariable("GO_SERVER_URL");                  
+            string pipelineName = Environment.GetEnvironmentVariable("GO_PIPELINE_NAME");      
+            string pipelineCounter = Environment.GetEnvironmentVariable("GO_PIPELINE_COUNTER");
+            string stageName = Environment.GetEnvironmentVariable("GO_STAGE_NAME");            
+            string stageCounter = Environment.GetEnvironmentVariable("GO_STAGE_COUNTER");      
+            string jobName = Environment.GetEnvironmentVariable("GO_JOB_NAME");                              
+            return $"{url}/files/{pipelineName}/{pipelineCounter}/{stageName}/{stageCounter}/{jobName}/cruise-output/console.log";
+        }
+
+        public static string GetConsoleSummaryTemplate(string nameAndNamespace)
+        {
+            using (var reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(nameAndNamespace)))
+            {
+                return reader.ReadToEnd();
             }
         }
     }

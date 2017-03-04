@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -33,7 +34,7 @@ Examples:
 
         public static string GetUrl()
         {
-            string url = Environment.GetEnvironmentVariable("GO_SERVER_URL");                  
+            string url = ConfigurationManager.AppSettings["gocdUrl"];
             string pipelineName = Environment.GetEnvironmentVariable("GO_PIPELINE_NAME");      
             string pipelineCounter = Environment.GetEnvironmentVariable("GO_PIPELINE_COUNTER");
             string stageName = Environment.GetEnvironmentVariable("GO_STAGE_NAME");            

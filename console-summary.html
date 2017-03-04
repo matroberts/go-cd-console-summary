@@ -2,49 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>Console Summary</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'/>
     <style>
     </style>
     <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         var url = "./cruise-output/console.log";
-        $('h6').append("Scanning <a href='" + url + "' target='_blank'>" + url + "</a> for errors and warnings.....");
         $.ajax({
             url: url,
             type: "GET",
             dataType: "text"
         })
-        .done(function (txt) {
+        .done(function(txt) {
             var errorRegex = /^.*: error.*$/gm;
             var error;
+            var errorCount = 0;
             while (error = errorRegex.exec(txt)) {
-                $('.errors').append("<p class='bg-danger'>" + error + "</p>");
+                $('.errors h2').after("<p class='bg-danger'>" + error + "</p>");
+                errorCount++;
             }
+            $('.errors h2').append("Errors (" + errorCount + ")");
 
             var warningRegex = /^.*:.*warning.*$/gm;
             var warning;
+            var warningCount = 0;
             while (warning = warningRegex.exec(txt)) {
-                $('.warnings').append("<p class='bg-warning'>" + warning + "</p>");
+                $('.warnings h2').after("<p class='bg-warning'>" + warning + "</p>");
+                warningCount++;
             }
-
+            $('.warnings h2').append("Warnings (" + warningCount + ")");
         })
-        .fail(function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status);
-            alert(thrownError);
+        .fail(function(xhr, ajaxOptions, thrownError) {
+            alert("Ajax call to " + url + " failed.  Status: " + xhr.status + " Exception: " + thrownError);
         });
     });
-
     </script>
 </head>
 <body>
-    <h6></h6>
     <div class="errors">
+        <h2></h2>
     </div>
     <div class="warnings">
+        <h2></h2>
     </div>
 </body>
 </html>

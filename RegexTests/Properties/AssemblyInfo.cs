@@ -1,0 +1,10 @@
+﻿using System.Reflection;
+[assembly: AssemblyTitle("RegexTests")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("RegexTests")]
+[assembly: AssemblyCopyright("MIT Licence")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: AssemblyVersion("1.0.*")]

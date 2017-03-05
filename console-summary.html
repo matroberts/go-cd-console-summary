@@ -18,23 +18,22 @@
             dataType: "text"
         })
         .done(function(txt) {
-            var errorRegex = /^.*: error.*$/gm;
-            var error;
+            var regex = /^.*(error|warning) [a-zA-Z]+[0-9]+[ ]?:.*$/gm;
+            var match;
             var errorCount = 0;
-            while (error = errorRegex.exec(txt)) {
-                $('.errors h2').after("<p class='bg-danger'>" + error + "</p>");
-                errorCount++;
-            }
-            $('.errors h2').append("Errors (" + errorCount + ")");
-
-            var warningRegex = /^.*:.*warning.*$/gm;
-            var warning;
             var warningCount = 0;
-            while (warning = warningRegex.exec(txt)) {
-                $('.warnings h2').after("<p class='bg-warning'>" + warning + "</p>");
-                warningCount++;
+            while (match = regex.exec(txt)) {
+                var className;
+                if (match[1] === "error") {
+                    className = 'bg-danger';
+                    errorCount++;
+                } else {
+                    className = 'bg-warning';
+                    warningCount++;
+                }
+                $('.warnings-and-errors').append("<p class='" + className + "'>" + match + "</p>");
             }
-            $('.warnings h2').append("Warnings (" + warningCount + ")");
+            $('h3').append("Warnings(" + warningCount + ") and Errors(" + errorCount + ")");
         })
         .fail(function(xhr, ajaxOptions, thrownError) {
             alert("Ajax call to " + url + " failed.  Status: " + xhr.status + " Exception: " + thrownError);
@@ -43,11 +42,9 @@
     </script>
 </head>
 <body>
-    <div class="errors">
-        <h2></h2>
-    </div>
-    <div class="warnings">
-        <h2></h2>
+    <div class="container-fluid">
+        <h3></h3>
+        <div class="warnings-and-errors"></div>
     </div>
 </body>
 </html>

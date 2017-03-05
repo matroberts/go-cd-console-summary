@@ -1,6 +1,7 @@
 # go-cd-console-summary
 Makes a web page which picks out MSBuild errors and warnings from a go.cd console.log.  
-How to set up console summary:
+
+Set up:
 
 1. Add the file console-summary.html to your project.
 1. In Go.CD add console-summary.html as an artifact to the Job.

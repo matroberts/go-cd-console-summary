@@ -1,5 +1,5 @@
 # go-cd-console-summary
-Makes a web page which picks out MSBuild errors and warnings from a go.cd console.log.  
+A web page which picks out MSBuild errors and warnings from a go.cd console.log.  
 
 Set up:
 

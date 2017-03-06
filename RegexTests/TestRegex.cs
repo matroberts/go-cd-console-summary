@@ -62,10 +62,11 @@ namespace RegexTests
     [TestFixture]
     public class TestRegex
     {
-        public static Regex Regex => new Regex(@"^.*(error|warning) [a-zA-Z]+[0-9]+[ ]?:.*$");
+        public static Regex Regex => new Regex(@"^.*(error|warning) [a-zA-Z]*[-]?[0-9]+[ ]?:.*$");
 
         [TestCase("BuildServer1", @"16:36:30.960 Fakes\DirectaApiProviderFake.cs(13,43): error CS0535: 'DirectaApiProviderFake' does not implement interface member 'IDirectaApiProvider.GetSiteResource(string)' [C:\GoAgent\pipelines\NetBackupAdapterTrunk\NetBackupAdapter.Testing\NetBackupAdapter.Testing.csproj]")]
         [TestCase("BuildServer2", @"17:00:50.705 C:\GoAgent\pipelines\DirectaTrunk\packages\Microsoft.TypeScript.MSBuild.2.2.1\tools\microsoft.TypeScript.targets(235,7): error MSB4064: The ""OutputLogFile"" parameter is not supported by the ""VsTsc"" task. Verify the parameter exists on the task, and it is a settable public instance property. [C:\GoAgent\pipelines\DirectaTrunk\Biomni.Directa.Web.UI.Pages\Biomni.Directa.Web.UI.Pages.csproj]")]
+        [TestCase("BuildServer3", @"15:42:32.738   ISDEV : warning -7326: Including 32-bit PE file C:\GoAgent\pipelines\NetBackupAdapterTrunk-Msi\NetBackupAdapterArtifacts\Deployment\Output\NetBackupAdapterPanels\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll in a strict 64-bit package. [C:\GoAgent\pipelines\NetBackupAdapterTrunk-Msi\NetBackupAdapterArtifacts\Deployment\Msi.proj]")]
         [TestCase("MikeFourie1", @"Main.cs(17,20): warning CS0168: The variable ‘foo’ is declared but never used")]
         [TestCase("MikeFourie2", @"C:\dir1\foo.resx(2) : error BC30188: Declaration expected.")]
         [TestCase("MikeFourie3", @"cl : Command line warning D4024 : unrecognized source file type ‘foo.cs’, object file assumed")]

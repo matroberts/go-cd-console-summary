@@ -8,7 +8,10 @@
       <string>C:\github\go-cd-console-summary\console-summary.html</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\github\go-cd-console-summary\RegexTests\Properties\AssemblyInfo.cs</string>
+      <string>c:\github\go-cd-console-summary\regextests\properties\assemblyinfo.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>Source Control Explorer - Disconnected</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
